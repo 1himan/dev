@@ -1,0 +1,8 @@
+baseURL = 'https://1himan.dev/'
+locale = 'en-us'
+title = 'Himan'
+theme='shibui'
+
+[caches]
+  [caches.images]
+    dir = ':cacheDir/images'
