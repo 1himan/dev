@@ -1,4 +1,4 @@
-baseURL = 'https://1himan.dev/'
+baseURL = 'https://1himan.github.io/'
 locale = 'en-us'
 title = 'Himan'
 theme='shibui'
@@ -6,3 +6,7 @@ theme='shibui'
 [caches]
   [caches.images]
     dir = ':cacheDir/images'
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
