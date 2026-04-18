@@ -7,6 +7,4 @@ but I also find subjects like biology, neuroscience,
 psychology, history, chemistry, physics and overall philosophy fun to read and
 worth spending time to comprehend on and about too.
 
-So occasionally you'll find me writing about those subjects here :)
-
-Something like this:
+So occasionally you'll find me writing about those topics here :)

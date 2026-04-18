@@ -1,0 +1,60 @@
+<div class="site-header">
+  <nav class="path-nav" aria-label="Breadcrumb">
+    <ol>
+      {{ template "breadcrumbnav" (dict "p1" . "p2" .) }}
+    </ol>
+  </nav>
+
+  <button
+    type="button"
+    class="theme-toggle"
+    data-theme-toggle
+    aria-label="Toggle color theme"
+    aria-pressed="false"
+  >
+    <span class="theme-toggle__icon theme-toggle__icon--moon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" focusable="false">
+        <path
+          d="M20 14.69A8 8 0 0 1 9.31 4 9 9 0 1 0 20 14.69z"
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="1.8"
+        />
+      </svg>
+    </span>
+    <span class="theme-toggle__icon theme-toggle__icon--sun" aria-hidden="true">
+      <svg viewBox="0 0 24 24" focusable="false">
+        <circle
+          cx="12"
+          cy="12"
+          r="4"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+        />
+        <path
+          d="M12 2v2.5M12 19.5V22M4.93 4.93l1.77 1.77M17.3 17.3l1.77 1.77M2 12h2.5M19.5 12H22M4.93 19.07 6.7 17.3M17.3 6.7l1.77-1.77"
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-width="1.8"
+        />
+      </svg>
+    </span>
+  </button>
+</div>
+
+{{ define "breadcrumbnav" }}
+  {{ if .p1.Parent }}
+    {{ template "breadcrumbnav" (dict "p1" .p1.Parent "p2" .p2 ) }}
+  {{ else if not .p1.IsHome }}
+    {{ template "breadcrumbnav" (dict "p1" .p1.Site.Home "p2" .p2 ) }}
+  {{ end }}
+  <li{{ if eq .p1 .p2 }} class="current"{{ end }}>
+    {{ if .p1.IsHome }}/{{ end }}
+    <a href="{{ .p1.RelPermalink }}">{{ if .p1.IsHome }}{{ .p1.Site.Title }}{{ else }}{{ .p1.Title }}{{ end }}</a>
+    {{ if ne .p1 .p2 }}/{{ end }}
+  </li>
+{{ end }}

@@ -47,12 +47,135 @@
     <link rel="stylesheet" href="/css/custom.css">
 
 
+    <script>
+      (function () {
+        var storageKey = 'theme-preference';
+        var root = document.documentElement;
+        var mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+        var metaThemeColor;
+
+        function getStoredTheme() {
+          try {
+            return localStorage.getItem(storageKey);
+          } catch (error) {
+            return null;
+          }
+        }
+
+        function getSystemTheme() {
+          return mediaQuery.matches ? 'dark' : 'light';
+        }
+
+        function getActiveTheme() {
+          var theme = root.getAttribute('data-theme');
+
+          if (theme === 'dark' || theme === 'light') {
+            return theme;
+          }
+
+          theme = getStoredTheme();
+
+          if (theme === 'dark' || theme === 'light') {
+            return theme;
+          }
+
+          return getSystemTheme();
+        }
+
+        function syncToggle(theme) {
+          var toggle = document.querySelector('[data-theme-toggle]');
+
+          if (!toggle) {
+            return;
+          }
+
+          toggle.setAttribute(
+            'aria-label',
+            'Switch to ' + (theme === 'dark' ? 'light' : 'dark') + ' theme'
+          );
+          toggle.setAttribute('aria-pressed', String(theme === 'dark'));
+        }
+
+        function syncThemeColor(theme) {
+          if (!metaThemeColor) {
+            metaThemeColor = document.querySelector('meta[name="theme-color"]');
+          }
+
+          if (metaThemeColor) {
+            metaThemeColor.setAttribute(
+              'content',
+              theme === 'dark' ? '#1f1b18' : '#f6f4ec'
+            );
+          }
+        }
+
+        function applyTheme(theme) {
+          root.setAttribute('data-theme', theme);
+
+          try {
+            localStorage.setItem(storageKey, theme);
+          } catch (error) {}
+
+          syncToggle(theme);
+          syncThemeColor(theme);
+        }
+
+        function handleSystemThemeChange() {
+          var storedTheme = getStoredTheme();
+
+          if (storedTheme === 'dark' || storedTheme === 'light') {
+            return;
+          }
+
+          syncToggle(getSystemTheme());
+          syncThemeColor(getSystemTheme());
+        }
+
+        var storedTheme = getStoredTheme();
+
+        if (storedTheme === 'dark' || storedTheme === 'light') {
+          root.setAttribute('data-theme', storedTheme);
+        }
+
+        syncThemeColor(getActiveTheme());
+
+        document.addEventListener('DOMContentLoaded', function () {
+          var toggle = document.querySelector('[data-theme-toggle]');
+          var theme = getActiveTheme();
+
+          syncToggle(theme);
+          syncThemeColor(theme);
+
+          if (!toggle) {
+            return;
+          }
+
+          toggle.addEventListener('click', function () {
+            applyTheme(getActiveTheme() === 'dark' ? 'light' : 'dark');
+          });
+        });
+
+        if (typeof mediaQuery.addEventListener === 'function') {
+          mediaQuery.addEventListener('change', handleSystemThemeChange);
+        } else if (typeof mediaQuery.addListener === 'function') {
+          mediaQuery.addListener(handleSystemThemeChange);
+        }
+      })();
+    </script>
   </head>
-  <body>
+  <body
+    class="
+      kind-taxonomy
+      
+      
+      section-categories
+    "
+  >
     <a href="#main-content" class="skip-link">Skip to content</a>
-    <header role="banner"><nav class="path-nav" aria-label="Breadcrumb">
-  <ol>
-    
+    <header role="banner"><div class="site-header">
+  <nav class="path-nav" aria-label="Breadcrumb">
+    <ol>
+      
   
     
   
@@ -69,9 +192,49 @@
     
   </li>
 
-  </ol>
-</nav>
+    </ol>
+  </nav>
 
+  <button
+    type="button"
+    class="theme-toggle"
+    data-theme-toggle
+    aria-label="Toggle color theme"
+    aria-pressed="false"
+  >
+    <span class="theme-toggle__icon theme-toggle__icon--moon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" focusable="false">
+        <path
+          d="M20 14.69A8 8 0 0 1 9.31 4 9 9 0 1 0 20 14.69z"
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="1.8"
+        />
+      </svg>
+    </span>
+    <span class="theme-toggle__icon theme-toggle__icon--sun" aria-hidden="true">
+      <svg viewBox="0 0 24 24" focusable="false">
+        <circle
+          cx="12"
+          cy="12"
+          r="4"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+        />
+        <path
+          d="M12 2v2.5M12 19.5V22M4.93 4.93l1.77 1.77M17.3 17.3l1.77 1.77M2 12h2.5M19.5 12H22M4.93 19.07 6.7 17.3M17.3 6.7l1.77-1.77"
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-width="1.8"
+        />
+      </svg>
+    </span>
+  </button>
+</div>
 
 
 </header>
