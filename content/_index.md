@@ -1,4 +1,6 @@
-# Hey... I'm himanshu aka himan or 1himan
+Hey... I'm himanshu aka himan or 1himan
+
+# The fountain of potential
 
 and you......? how are you? are you fine?
 

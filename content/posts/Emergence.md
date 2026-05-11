@@ -4,4 +4,4 @@ draft = true
 title = 'Emergence'
 +++
 
-## How new properties emerge via complex interactions between systems and how to manage the depth/breadth
+## How new properties emerge via complex interactions between systems
