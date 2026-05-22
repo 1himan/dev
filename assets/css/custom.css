@@ -1,8 +1,9 @@
-
+@import url('https://googleapis.com');
 :root,
 :root[data-theme="light"] {
   color-scheme: light;
-  --color-bg-primary: #f6f4ec;
+/* adsf #f6f4ec #FAF9F6*/
+  --color-bg-primary: #f8f8f8;
   --color-bg-secondary: #efeadf;
   --color-border: #d9d1c1;
   --color-selection-bg: #ddd3bf;
@@ -10,7 +11,9 @@
   --color-text-muted: #5b5348;
   --color-text-code: #3f382f;
   --font-family-ui: "Avenir Next", Avenir, "Segoe UI", sans-serif;
-  --font-family-reading: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  /* --font-family-ui: "Inter", sans-serif; */
+  /* --font-family-reading:  "Avenir Next", Avenir, "Segoe UI", sans-serif; */
+  --font-family-reading: "Inter", sans-serif;
   --font-family-display: "Avenir Next", Avenir, "Segoe UI", sans-serif;
   --layout-gutter: clamp(1rem, 3vw, 2rem);
   --container-width: 68ch;
@@ -237,7 +240,7 @@ body.is-page.section-posts .site-header .path-nav {
   height: var(--hero-height);
   margin: 0;
   overflow: hidden;
-  border-radius: 0;
+  /* border-radius: 0; */
   background: none;
   box-shadow: none;
 }
@@ -269,7 +272,7 @@ body.is-page.section-posts .site-header .path-nav {
   margin: clamp(2rem, 5vw, 4rem) auto 0;
   padding: clamp(1.5rem, 3vw, 2.5rem) clamp(1.1rem, 3vw, 2.25rem) 2.25rem;
   background: var(--color-bg-primary);
-  border-radius: 0.5rem;
+  border-radius: 0.5rem 0.5rem 0rem 0rem;
 }
 
 .essay-content {
@@ -338,7 +341,7 @@ body.is-page.section-posts .site-header .path-nav {
 .essay-content img {
   width: 100%;
   height: auto;
-  border-radius: 1rem;
+  /* border-radius: 1rem; */
   display: block;
 }
 
@@ -398,14 +401,14 @@ body.is-page.section-posts .site-header .path-nav {
     width: 100%;
     height: min(48svh, 24rem);
     margin: 0;
-    border-radius: 0;
+    /* border-radius: 0; */
   }
 
   .essay-copy {
     width: min(calc(100% - (var(--layout-gutter) * 2)), 54rem);
     margin: 1.5rem auto 0;
     padding: 1.1rem 1rem 1.4rem;
-    border-radius: 1.1rem;
+    /* border-radius: 1.1rem; */
   }
 
   .essay-content {
