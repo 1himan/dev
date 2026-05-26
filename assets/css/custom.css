@@ -7,12 +7,10 @@
   --color-bg-secondary: #efeadf;
   --color-border: #d9d1c1;
   --color-selection-bg: #ddd3bf;
-  --color-text-primary: #191613;
+  --color-text-primary: #36454F;
   --color-text-muted: #5b5348;
   --color-text-code: #3f382f;
   --font-family-ui: "Avenir Next", Avenir, "Segoe UI", sans-serif;
-  /* --font-family-ui: "Inter", sans-serif; */
-  /* --font-family-reading:  "Avenir Next", Avenir, "Segoe UI", sans-serif; */
   --font-family-reading: "Inter", sans-serif;
   --font-family-display: "Avenir Next", Avenir, "Segoe UI", sans-serif;
   --layout-gutter: clamp(1rem, 3vw, 2rem);
@@ -25,27 +23,38 @@
 
 :root[data-theme="dark"] {
   color-scheme: dark;
-  --color-bg-primary: #1f1b18;
-  --color-bg-secondary: #2a241f;
-  --color-border: #4a4036;
-  --color-selection-bg: #5f5143;
-  --color-text-primary: #f3ede4;
-  --color-text-muted: #c0b4a7;
-  --color-text-code: #ddd2c6;
+  /* another primary #262624 */
+  --color-bg-primary: #262624;
+  --color-bg-secondary: #1C1C1C;
+  --color-border: #2A2A2A;
+  --color-selection-bg: #A0A09C;
+  --color-text-primary: #E2E2DF;
+  --color-text-muted: #888884;
+  --color-text-code: #A0A09C;
+  --color-accent: #A0A09C;
   /* --hero-shadow: 0 24px 80px rgba(0, 0, 0, 0.35); */
+}
+
+:root[data-theme="dark"] ::selection {
+  color: var(--color-bg-primary);
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme]) {
     color-scheme: dark;
-    --color-bg-primary: #1f1b18;
-    --color-bg-secondary: #2a241f;
-    --color-border: #4a4036;
-    --color-selection-bg: #5f5143;
-    --color-text-primary: #f3ede4;
-    --color-text-muted: #c0b4a7;
-    --color-text-code: #ddd2c6;
+    --color-bg-primary: #262624;
+    --color-bg-secondary: #1C1C1C;
+    --color-border: #2A2A2A;
+    --color-selection-bg: #A0A09C;
+    --color-text-primary: #E2E2DF;
+    --color-text-muted: #888884;
+    --color-text-code: #A0A09C;
+    --color-accent: #A0A09C;
     /* --hero-shadow: 0 24px 80px rgba(0, 0, 0, 0.35); */
+  }
+
+  :root:not([data-theme]) ::selection {
+    color: var(--color-bg-primary);
   }
 }
 
@@ -280,7 +289,7 @@ body.is-page.section-posts .site-header .path-nav {
   margin: 0;
   color: var(--color-text-primary);
   font-family: var(--font-family-reading);
-  font-size: clamp(1.1rem, 0.95rem + 0.45vw, 1.36rem);
+  font-size: clamp(1rem, 0.85rem + 0.45vw, 1.2rem);
   line-height: 1.8;
 }
 
